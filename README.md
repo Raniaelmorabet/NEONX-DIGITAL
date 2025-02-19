@@ -37,6 +37,8 @@ NeonX Digital is powered by the latest technologies to ensure efficiency and sca
 ## 📬 Contact Us
 
 Want to work with us? Let's connect! 🚀
+📧 **Email:** neonx.digital11@gmail.com
+
 ---
 
 ### 🔥 Let's Build the Future, One Line of Code at a Time!
