@@ -1,5 +1,6 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
+import emailjs from "emailjs-com";
 import bg from "@/assets/ContactUs/BGImage2.jpg";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
@@ -7,6 +8,39 @@ import { Button } from "./ui/button";
 const ContactUs = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { triggerOnce: true, threshold: 0.3 });
+
+  const [designService, setDesignService] = useState("");
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const templateParams = {
+        design_service: designService,
+        email: email,
+      };
+
+      // Replace with your EmailJS service ID, template ID, and user ID
+      await emailjs.send(
+        "service_2d25cum",
+        "template_oq33mr9",
+        templateParams,
+        "5eR8XMsDN1mBxKRpk"
+      );
+
+      setMessage("Message sent successfully!");
+      setDesignService("");
+      setEmail("");
+    } catch (error) {
+      setMessage("Failed to send message. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="container">
@@ -51,6 +85,8 @@ const ContactUs = () => {
           <Input
             type="text"
             placeholder="Enter design services"
+            value={designService}
+            onChange={(e) => setDesignService(e.target.value)}
             className="bg-transparent border-none ring-transparent outline-none text-muted rounded-l-full px-6 py-3 flex-grow font-urbanist tracking-wide"
           />
         </motion.div>
@@ -63,12 +99,28 @@ const ContactUs = () => {
           <Input
             type="email"
             placeholder="raniaelmorabet@gmail.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="bg-transparent border-none ring-transparent outline-none text-muted rounded-l-full px-6 py-3 flex-grow font-urbanist tracking-wide"
           />
-          <Button className="bg-primary text-black hover:bg-[] rounded-sm px-6 py-3 font-urbanist ">
-            Submit Now
+          <Button
+            onClick={handleSubmit}
+            disabled={loading}
+            className="bg-primary text-black hover:bg-[] rounded-sm px-6 py-3 font-urbanist"
+          >
+            {loading ? "Sending..." : "Submit Now"}
           </Button>
         </motion.div>
+        {message && (
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-center text-muted text-lg mt-4"
+          >
+            {message}
+          </motion.p>
+        )}
       </motion.div>
     </div>
   );
