@@ -53,7 +53,7 @@ export default function TechStack() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
-                className="group relative overflow-hidden rounded-2xl bg-[#181818] p-3 sm:p-4 transition-all duration-300 hover:shadow-[0_0_10px_rgba(221,255,0,0.3)] h-full flex flex-col justify-between"
+                className="group relative overflow-hidden rounded-2xl bg-[#181818] border-primary/40 border-[0.3px] p-3 sm:p-4 transition-all duration-300 hover:shadow-[0_0_10px_rgba(221,255,0,0.3)] h-full flex flex-col justify-between"
               >
                 <div className="flex items-center sm:items-start sm:flex-row flex-col space-x-2 sm:space-x-3">
                   <div className="rounded-full bg-[#2C2F16]/50 border border-[#444D13] p-2">
