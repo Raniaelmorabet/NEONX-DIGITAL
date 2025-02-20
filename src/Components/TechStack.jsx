@@ -34,7 +34,7 @@ export default function TechStack() {
     <>
       <div className="container flex flex-col justify-center items-center">
         <div className="flex justify-center mx-auto mt-22">
-          <h1 className="px-5 py-2 text-primary border border-[#404138]/50 bg-secondary font-urbanist rounded-full text-md tracking-wide font-thin">
+          <h1 className="mt-10 px-5 py-2 text-primary border border-[#404138]/50 bg-secondary font-urbanist rounded-full text-md tracking-wide font-thin">
             TechStack
           </h1>
         </div>
@@ -44,7 +44,7 @@ export default function TechStack() {
           </p>
         </div>
       </div>
-      <div className="min-h-screen p-4 sm:p-8" ref={ref}>
+      <div className="mb-40 p-4 sm:p-8" ref={ref}>
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
             {tools.map((tool, index) => (
