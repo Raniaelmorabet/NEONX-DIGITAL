@@ -69,7 +69,7 @@ export default function TechStack() {
                     <p className="text-center sm:text-left text-xs text-gray-400">{tool.description}</p>
                   </div>
                 </div>
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#DDFF00]/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               </motion.div>
             ))}
           </div>
