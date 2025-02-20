@@ -1,0 +1,77 @@
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import bg from "@/assets/ContactUs/BGImage2.jpg";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
+
+const ContactUs = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { triggerOnce: true, threshold: 0.3 });
+
+  return (
+    <div className="container">
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 50 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="relative rounded-3xl w-full h-full min-h-[400px] text-white flex flex-col items-center justify-center px-10 py-10"
+      >
+        <img
+          src={bg}
+          className="opacity-90 rounded-3xl w-full absolute h-full top-0 left-0 z-[-1]"
+          alt=""
+        />
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
+          className="text-center text-3xl md:text-4xl max-w-3xl lg:text-5xl mb-8"
+        >
+          Elevate Your Digital Presence with Cutting-Edge Software Solutions
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
+          className="text-center text-muted text-lg mb-10 max-w-2xl mx-auto font-urbanist"
+        >
+          Our expert team specializes in building high-performance web
+          applications tailored to your needs. Whether you're launching a
+          startup or scaling your business, we deliver innovative,
+          user-friendly, and efficient software solutions that drive success.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
+          className="bg-secondary rounded-lg flex w-full max-w-md py-2 px-3 border-[#404138] border-[0.5px] mb-5"
+        >
+          <Input
+            type="text"
+            placeholder="Enter design services"
+            className="bg-transparent border-none ring-transparent outline-none text-muted rounded-l-full px-6 py-3 flex-grow font-urbanist tracking-wide"
+          />
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
+          className="bg-secondary rounded-lg flex w-full max-w-md py-2 px-3 border-[#404138] border-[0.5px]"
+        >
+          <Input
+            type="email"
+            placeholder="raniaelmorabet@gmail.com"
+            className="bg-transparent border-none ring-transparent outline-none text-muted rounded-l-full px-6 py-3 flex-grow font-urbanist tracking-wide"
+          />
+          <Button className="bg-primary text-black hover:bg-[] rounded-sm px-6 py-3 font-urbanist ">
+            Submit Now
+          </Button>
+        </motion.div>
+      </motion.div>
+    </div>
+  );
+};
+
+export default ContactUs;
