@@ -4,6 +4,8 @@ import About from "./Components/about.jsx";
 import Services from "./Components/Services.jsx";
 import TechStack from "./Components/TechStack.jsx";
 import FAQSection from "./Components/FAQ.jsx";
+import ContactUs from "./Components/ContactUs.jsx";
+import Footer from "./Components/Footer.jsx";
 
 function App() {
     return(
@@ -14,6 +16,8 @@ function App() {
             <Services/>
             <TechStack/>
             <FAQSection />
+            <ContactUs />
+            <Footer />
         </>
   )
 }
