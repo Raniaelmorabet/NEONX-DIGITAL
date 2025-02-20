@@ -24,17 +24,17 @@ module.exports = {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			primary: {
-  				DEFAULT: '#DDFF00',
+  				DEFAULT: '#DDFF00'
   			},
   			secondary: {
-  				DEFAULT: '#181818',
+  				DEFAULT: '#181818'
   			},
   			destructive: {
   				DEFAULT: 'hsl(var(--destructive))',
   				foreground: 'hsl(var(--destructive-foreground))'
   			},
   			muted: {
-  				DEFAULT: '#9F9F9F',
+  				DEFAULT: '#9F9F9F'
   			},
   			accent: {
   				DEFAULT: 'hsl(var(--accent))',
@@ -54,13 +54,16 @@ module.exports = {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
-		fontFamily: {
-			urbanist: ['urbanist', 'sans-serif'],
-		},
+  		fontFamily: {
+  			urbanist: [
+  				'urbanist',
+  				'sans-serif'
+  			]
+  		},
   		keyframes: {
   			'accordion-down': {
   				from: {
-  					height: 0
+  					height: '0'
   				},
   				to: {
   					height: 'var(--radix-accordion-content-height)'
@@ -71,7 +74,7 @@ module.exports = {
   					height: 'var(--radix-accordion-content-height)'
   				},
   				to: {
-  					height: 0
+  					height: '0'
   				}
   			}
   		},
