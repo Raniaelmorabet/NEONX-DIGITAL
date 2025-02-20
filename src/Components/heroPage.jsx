@@ -1,10 +1,13 @@
-import { Input } from "./ui/input"
-import { Button } from "./ui/button"
-import hero from '../assets/HeroImage/HeroImg.jpg'
+import { motion } from "framer-motion";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
+import hero from "../assets/HeroImage/HeroImg.jpg";
+import { useInView } from "react-intersection-observer";
 
 export default function HeroPage() {
+    const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
+
     return (
-        <>
         <div className="min-h-screen bg-black text-white relative overflow-hidden">
             <img
                 src={hero}
@@ -14,18 +17,33 @@ export default function HeroPage() {
             />
             <div className="relative z-10">
                 <main className="flex flex-col items-center justify-center min-h-screen px-4 text-center pt-5">
-                    <div className="max-w-4xl w-full relative px-4 md:px-8">
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl mb-10 relative z-10 font-urbanist">
-                            <span className='font-semibold leading-relaxed'>Innovation in Every Pixel,</span>
+                    <div ref={ref} className="max-w-4xl w-full relative px-4 md:px-8">
+                        <motion.h1
+                            className="text-4xl md:text-5xl lg:text-6xl mb-10 relative z-10 font-urbanist"
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={inView ? { opacity: 1, y: 0 } : {}}
+                            transition={{ duration: 1, ease: "easeOut", delay: 1.6 }}
+                        >
+                            <span className="font-semibold leading-relaxed">Innovation in Every Pixel,</span>
                             <br />
                             Efficiency in Every Line of Code
-                        </h1>
-                        <p className="text-muted text-lg mb-10 max-w-2xl mx-auto font-urbanist">
+                        </motion.h1>
+                        <motion.p
+                            className="text-muted text-lg mb-10 max-w-2xl mx-auto font-urbanist"
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={inView ? { opacity: 1, y: 0 } : {}}
+                            transition={{ duration: 0.8, delay: 2.3, ease: "easeOut" }}
+                        >
                             Welcome to NeonX Digital, where technology meets artistry.
-                            We're not just developers we're digital architects, crafting seamless,
-                            high-performance experiences that command attention
-                        </p>
-                        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 max-w-md mx-auto">
+                            We're not just developers, we're digital architects, crafting seamless,
+                            high-performance experiences that command attention.
+                        </motion.p>
+                        <motion.div
+                            className="flex flex-col sm:flex-row justify-center items-center gap-4 max-w-md mx-auto"
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={inView ? { opacity: 1, y: 0 } : {}}
+                            transition={{ duration: 0.8, delay: 2.8, ease: "easeOut" }}
+                        >
                             <div className="bg-secondary rounded-full flex w-full max-w-md py-2 px-3 border-[#404138] border-[0.5px]">
                                 <Input
                                     type="email"
@@ -36,11 +54,10 @@ export default function HeroPage() {
                                     Submit Now
                                 </Button>
                             </div>
-                        </div>
+                        </motion.div>
                     </div>
                 </main>
             </div>
         </div>
-        </>
-    )
+    );
 }
