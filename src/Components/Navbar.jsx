@@ -29,7 +29,7 @@ function Navbar() {
         <header className="sticky top-0 left-0 right-0 z-20 bg-[#2C2F1E] bg-opacity-50 backdrop-blur-md">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center py-4">
-                    <div className="w-20 relative">
+                    <div className="w-20 relative drop-shadow-[0_4px_6px_#D1F833]">
                         <img src={nav}
                              alt="Logo"
                         />
