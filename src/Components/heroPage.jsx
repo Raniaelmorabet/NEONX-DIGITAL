@@ -3,9 +3,64 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import hero from "../assets/HeroImage/HeroImg.jpg";
 import { useInView } from "react-intersection-observer";
+import { useState } from "react";
+import emailjs from "emailjs-com";
 
 export default function HeroPage() {
     const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
+    const [email, setEmail] = useState("");
+    const [message, setMessage] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
+
+    // Validate email format
+    const validateEmail = (email) => {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        // Reset error and success messages
+        setError("");
+        setSuccess("");
+
+        // Validate email
+        if (!email.trim()) {
+            setError("Email is required.");
+            return;
+        }
+
+        if (!validateEmail(email)) {
+            setError("Please enter a valid email address.");
+            return;
+        }
+
+        setLoading(true);
+
+        try {
+            const templateParams = {
+                design_service: "Hello, I would like to get in touch with you!",
+                email: email,
+              };
+
+            await emailjs.send(
+                "service_2d25cum",
+                "template_oq33mr9",
+                templateParams,
+                "5eR8XMsDN1mBxKRpk" 
+            );
+
+            setSuccess("Message sent successfully!");
+            setEmail("");
+        } catch (error) {
+            setError("Failed to send message. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
         <div className="min-h-screen bg-black text-white relative overflow-hidden">
@@ -44,17 +99,47 @@ export default function HeroPage() {
                             animate={inView ? { opacity: 1, y: 0 } : {}}
                             transition={{ duration: 0.8, delay: 2.8, ease: "easeOut" }}
                         >
-                            <div className="bg-secondary rounded-full flex w-full max-w-md py-2 px-3 border-[#404138] border-[0.5px]">
+                            <form onSubmit={handleSubmit} className="bg-secondary rounded-full flex w-full max-w-md py-2 px-3 border-[#404138] border-[0.5px]">
                                 <Input
                                     type="email"
-                                    placeholder="raniaelmorabet@gmail.com"
+                                    placeholder="neonx.digital11@gmail.com"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
                                     className="bg-transparent border-none ring-transparent outline-none text-muted rounded-l-full px-6 py-3 flex-grow font-urbanist tracking-wide"
                                 />
-                                <Button className="bg-primary text-black hover:bg-[] rounded-full px-6 py-3 font-urbanist ">
-                                    Submit Now
+                                <Button
+                                    type="submit"
+                                    disabled={loading}
+                                    className="bg-primary text-black hover:bg-[] rounded-full px-6 py-3 font-urbanist"
+                                >
+                                    {loading ? "Sending..." : "Submit Now"}
                                 </Button>
-                            </div>
+                            </form>
                         </motion.div>
+
+                        {/* Error Message */}
+                        {error && (
+                            <motion.p
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.8, ease: "easeOut" }}
+                                className="text-center text-red-500 text-lg mt-4"
+                            >
+                                {error}
+                            </motion.p>
+                        )}
+
+                        {/* Success Message */}
+                        {success && (
+                            <motion.p
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.8, ease: "easeOut" }}
+                                className="text-center text-green-500 text-lg mt-4"
+                            >
+                                {success}
+                            </motion.p>
+                        )}
                     </div>
                 </main>
             </div>
