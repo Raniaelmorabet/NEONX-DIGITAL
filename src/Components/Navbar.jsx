@@ -85,7 +85,7 @@ function Navbar() {
                                 Explore
                             </Button>
                         </motion.div>
-                        <button className="md:hidden text-white" onClick={toggleMenu}>
+                        <button className="md:hidden text-white cursor-pointer" onClick={toggleMenu}>
                             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
                         </button>
                     </div>
@@ -95,11 +95,12 @@ function Navbar() {
 
             {/* Mobile menu */}
             <motion.div
-                className="fixed inset-0 z-30 bg-black bg-opacity-90 md:hidden"
+                className="fixed  inset-0 z-20 bg-black bg-opacity-90 md:hidden"
                 initial={{ opacity: 0, x: "100%" }}
                 animate={isMenuOpen ? { opacity: 1, x: 0 } : { opacity: 0, x: "100%" }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
             >
+                <X size={24 }  onClick={toggleMenu} className="absolute top-5 right-5 text-white" />
                 <div className="flex flex-col items-center justify-center h-full">
                     <nav>
                         <ul className="flex flex-col space-y-6 text-center">
