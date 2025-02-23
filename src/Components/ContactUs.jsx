@@ -13,9 +13,37 @@ const ContactUs = () => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+
+  // Validate email format
+  const validateEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Reset error message
+    setError("");
+
+    // Validate design service field
+    if (!designService.trim()) {
+      setError("Design service is required.");
+      return;
+    }
+
+    // Validate email field
+    if (!email.trim()) {
+      setError("Email is required.");
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -76,6 +104,18 @@ const ContactUs = () => {
           user-friendly, and efficient software solutions that drive success.
         </motion.p>
 
+        {/* Error Message */}
+        {error && (
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-center text-red-500 text-lg mb-4"
+          >
+            {error}
+          </motion.p>
+        )}
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -98,7 +138,7 @@ const ContactUs = () => {
         >
           <Input
             type="email"
-            placeholder="raniaelmorabet@gmail.com"
+            placeholder="neonx.digital11@gmail.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="bg-transparent border-none ring-transparent outline-none text-muted rounded-l-full px-6 py-3 flex-grow font-urbanist tracking-wide"
